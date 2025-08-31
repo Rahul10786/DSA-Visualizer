@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DSA Studio — Desktop Visualizer (All Core Modules)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="logo"></div>
+      <h1>DSA Studio — Desktop Visualizer</h1>
+      <div class="top-actions">
+        <button class="btn ghost" id="saveBtn">Export State</button>
+        <input type="file" id="loadFile" style="display:none" />
+        <button class="btn" id="loadBtn">Import State</button>
+        <button class="btn accent" id="runBtn">Run</button>
+        <button class="btn" id="stopBtn">Stop</button>
+      </div>
+    </header>
+
+    <div class="body">
+      <!-- Sidebar: Toolbox -->
+      <aside class="sidebar">
+        <div class="section">
+          <h3>Choose Structure</h3>
+          <div class="row">
+            <label>Data Structure</label>
+            <select id="structure">
+              <option value="array">Array</option>
+              <option value="linkedlist">Linked List</option>
+              <option value="stack">Stack</option>
+              <option value="queue">Queue</option>
+            </select>
+          </div>
+          <div class="row">
+            <label>Variant</label>
+            <select id="variant"></select>
+          </div>
+          <div class="row">
+            <label>Operation / Algorithm</label>
+            <select id="operation"></select>
+          </div>
+        </div>
+
+        <div class="section" id="datasetSection">
+          <h3>Dataset</h3>
+          <div class="row" id="arrayControls">
+            <label>Size</label>
+            <input id="size" type="number" min="5" max="200" value="10" />
+            <label>Manual input</label>
+            <input id="manual" type="text" placeholder="e.g., 5 1 9 2 7 3" />
+            <div class="actions">
+              <button class="btn accent" id="gen">Generate</button>
+              <button class="btn" id="shuffle">Shuffle</button>
+              <button class="btn ghost" id="applyManual">Use</button>
+            </div>
+          </div>
+          <div class="row" id="matrixControls" style="display:none">
+            <label>Rows × Cols</label>
+            <div class="actions" style="width:100%">
+              <input id="rows" type="number" min="1" max="20" value="5" />
+              <input id="cols" type="number" min="1" max="20" value="6" />
+              <button class="btn accent" id="mkMatrix">Make Matrix</button>
+            </div>
+          </div>
+          <div class="row" id="valueControls" style="display:none">
+            <label>Value</label>
+            <input id="valueInput" type="number" value="7" />
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Playback</h3>
+          <div class="row">
+            <label>Speed</label>
+            <input id="speed" type="range" min="1" max="100" value="60" />
+          </div>
+          <div class="actions">
+            <button class="btn" id="resetBtn">Reset</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main: Viz + Side panel -->
+      <main class="main">
+        <div class="meta">
+          <div class="card"><div class="k">Comparisons</div><div class="v" id="cmp">0</div></div>
+          <div class="card"><div class="k">Writes/Swaps</div><div class="v" id="swp">0</div></div>
+          <div class="card"><div class="k">Elapsed (ms)</div><div class="v" id="time">0</div></div>
+          <div class="card"><div class="k">Status</div><div class="v" id="status">Ready</div></div>
+        </div>
+
+        <div class="tabs">
+          <div class="tab active" data-tab="viz">Visualization</div>
+        </div>
+
+        <section class="workspace">
+          <div id="canvas" class="canvas" aria-label="visualization area"></div>
+          <aside class="sidepanel">
+            <div class="card">
+              <div class="k">Theoretical Complexity</div>
+              <div class="mono" id="complexity">Best — Avg — Worst — Space</div>
+            </div>
+            <div class="card">
+              <div class="k">Current Step</div>
+              <pre class="mono" id="stepLog">—</pre>
+            </div>
+            <div id="pseudoCard" >
+  <pre id="pseudoBox">(pseudocode)</pre>
+</div>
+          </aside>
+        </section>
+
+
+<button class="btn" id="themeToggle">Toggle Theme</button>
+
+        <footer>
+          <div class="hint">Tip: Use Import/Export to save your datasets and resume later.</div>
+          <div class="hint">DSA Studio ©</div>
+        </footer>
+      </main>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
